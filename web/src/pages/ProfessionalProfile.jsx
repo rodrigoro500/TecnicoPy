@@ -1,4 +1,4 @@
-import ContactCard from "../components/profile/ContactCard";
+import ContactCard2 from "../components/profile/ContactCard2";
 import ReviewsSection from "../components/profile/ReviewsSection";
 import ProfileHero from "../components/profile/ProfileHero";
 import OrionTrustCard from "../components/profile/OrionTrustCard";
@@ -11,7 +11,7 @@ function ProfessionalProfile() {
       <OrionTrustCard />
       <GallerySection />
       <ReviewsSection />
-      <ContactCard />
+      <ContactCard2 />
     </>
   );
 }
