@@ -10,6 +10,9 @@ const rrVisionHD = {
   jobs: 320,
   complaints: 0,
   photos: 34,
+  phone: "0985 385 012",
+whatsapp: "595985385012",
+schedule: "Lunes a Sábado",
 };
 
 export default rrVisionHD;

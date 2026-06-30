@@ -1,12 +1,17 @@
-function OrionTrustCard() {
+import ORION from "../../services/orion";
+
+function OrionTrustCard({ profile }) {
+  const analysis = ORION.analyze(profile);
+
   const trustItems = [
-    "Identidad verificada por TécnicoPy",
-    "Excelente reputación con clientes",
-    "Responde en menos de 10 minutos",
-    "Más de 300 trabajos realizados",
-    "Sin reclamos registrados",
-    "Perfil 100% completo",
-  ];
+    profile.verified && "Identidad verificada por TécnicoPy",
+    profile.rating >= 4.8 && "Excelente reputación con clientes",
+    profile.responseMinutes <= 10 &&
+      `Responde en menos de ${profile.responseMinutes} minutos`,
+    profile.jobs >= 300 && `Más de ${profile.jobs} trabajos realizados`,
+    profile.complaints === 0 && "Sin reclamos registrados",
+    profile.completedProfile === 100 && "Perfil 100% completo",
+  ].filter(Boolean);
 
   return (
     <section className="bg-[#020817] px-6 pb-16 text-white">
@@ -34,15 +39,24 @@ function OrionTrustCard() {
                   <p className="text-sm font-bold text-slate-400">
                     Índice ORION
                   </p>
-                  <p className="text-6xl font-black text-green-400">98</p>
-                  <p className="font-black text-white">Excelente</p>
+                  <p className="text-6xl font-black text-green-400">
+                    {analysis.score}
+                  </p>
+                  <p className="font-black text-white">
+                    {analysis.level.level}
+                  </p>
                 </div>
 
-                <div className="h-24 w-24 rounded-full border-8 border-green-400 bg-green-500/10 shadow-[0_0_40px_#00d95f55]" />
+                <div className="flex h-24 w-24 items-center justify-center rounded-full border-8 border-green-400 bg-green-500/10 text-2xl font-black text-green-300 shadow-[0_0_40px_#00d95f55]">
+                  {analysis.score}
+                </div>
               </div>
 
               <div className="mb-6 h-3 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-[98%] rounded-full bg-green-400 shadow-[0_0_20px_#00d95f]" />
+                <div
+                  className="h-full rounded-full bg-green-400 shadow-[0_0_20px_#00d95f]"
+                  style={{ width: `${analysis.score}%` }}
+                />
               </div>
 
               <div className="grid gap-3">
